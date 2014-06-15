@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorting stuff</title>
+		
+	<!-- There is some error when loading from CDN (not really sure why)
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-animate.js"></script> 
+	<script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script> 
+	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.0/animate.min.css" rel="stylesheet">
+    -->
+  
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/jquery-ui.js"></script>
+	<script src="lib/angular.js"></script>
+	<script src="lib/angular-animate.js"></script>
+	<script src="lib/sortable.js"></script> 
+	<script src="lib/ui-bootstrap-tpls-0.11.0.js"></script>
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="lib/animate.css" rel="stylesheet"> 
+
+
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/main.js"></script> 
+    <script src="js/directives.js"></script> 
+    <script src="js/controllers.js"></script> 
+    <script src="js/services.js"></script> 
+</head>
+<body ng-app="app" ng-controller="ctrl">
+
+<div class="floatleft">
+
+	<h4>New item subject, deadline, duration etc. @location #tag</h4>
+	<form ng-submit="addItem()">
+		<input type="text" ng-model="newitem">
+		<input type="submit" value="add">
+	</form>
+
+	<h2>Things to plan</h2>
+	<div ui-sortable='toPlanOptions' ng-model="itemsnew" class="connectMe toPlan">
+	  <myitem ng-repeat="item in itemsnew" item="item" statuses="statuses"></myitem>
+	</div>	
+
+	<h2>Things to work on</h2>
+	<div ui-sortable='defaultOptions' ng-model="itemsold" class="connectMe toWork">
+	  <myitem ng-repeat="item in itemsold" item="item" statuses="statuses"></myitem>
+	</div>
+</div>
+
+<!-- you can see the current data here -->
+<div class="floatleft">
+	<pre>{{format(itemsnew)}}
+{{format(itemsold)}}</pre>
+</div>
+
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
